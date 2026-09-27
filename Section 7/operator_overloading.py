@@ -1,148 +1,86 @@
 '''
-What is Operator Overloading?
+Create a class called Student.
 
-Operator overloading means:
+Each student should have:
 
-Giving an operator such as +, -, *, ==, <, etc. a special meaning when it is used with your own objects.
-
-Overloading = making something work in different ways depending on what you use it with.
-
-For example, Python already knows:
-
-5 + 3
-
-means:
-
-8
-
-And:
-
-"Hello " + "World"
-
-means:
-
-Hello World
-
-The same + operator behaves differently depending on the data.
-
-That's operator overloading.
-
-
-
-
-2. But how does Python do this?
-
-Python uses special methods called dunder methods.
-
-Dunder = "double underscore."
+name
+marks
 
 For example:
 
-__add__()
+s1 = Student("Rahul", 80)
+s2 = Student("Aman", 70)
+Part 1 — Overload +
 
-is the special method behind +.
+Make:
 
-So when you write:
+s3 = s1 + s2
 
-a + b
+create a new Student object where:
 
-Python internally uses something similar to:
-
-a.__add__(b)
-
-You normally don't call __add__() yourself.
-
-3. Example with your own class
-
-Suppose we create:
-
-class Number:
-    def __init__(self, value):
-        self.value = value
-
-Now:
-
-num1 = Number(10)
-num2 = Number(20)
-
-print(num1 + num2)
-
-This doesn't automatically work the way we want.
-
-Why?
-
-Python doesn't know what + should mean when you're adding two Number objects.
-
-So we can tell Python what + should do.
-
-class Number:
-    def __init__(self, value):
-        self.value = value
-
-    def __add__(self, other):
-        return self.value + other.value
-
-
-num1 = Number(10)
-num2 = Number(20)
-
-print(num1 + num2)
-
-Output:
-
-30
-
-
-we write the overloading operator in the class as method
-'''
-
-
-
-'''
-Create a class called Box.
-
-The class should have:
-
-length
-width
-
-For example:
-
-box1 = Box(10, 5)
-box2 = Box(3, 2)
-
-Now overload the + operator so that:
-
-box1 + box2
-
-creates a new Box whose:
-
-length = box1.length + box2.length
-width = box1.width + box2.width
+name = "Combined"
+marks = s1.marks + s2.marks
 
 So:
 
-box1 + box2
+s3 = s1 + s2
 
-should produce a box with:
+should produce a student like:
 
-length = 13
-width = 7
+Name: Combined
+Marks: 150
+
+You'll need:
+
+def __add__(self, other):
+
+Part 2 — Overload ==
+
+Make it possible to compare two students:
+
+s1 == s2
+
+The result should be True if their marks are equal, otherwise False.
+
+You'll need:
+
+def __eq__(self, other):
+Expected behavior
+s1 = Student("Rahul", 80)
+s2 = Student("Aman", 70)
+s3 = s1 + s2
+
+print(s3.name)
+print(s3.marks)
+
+print(s1 == s2)
+
+Expected output:
+
+Combined
+150
+False
 '''
 
+class Student:
+    def __init__(self, name, marks):
+        self.name=name
+        self.marks=marks
 
-class Box:
-    def __init__(self, length, width):
-        self.length=length
-        self.width=width
 
-    def __add__(self, other):
-        total_length=self.length + other.length
-        total_width=self.width + other.width
+    def __add__(self,other):
+        
+        return Student("combined",self.marks+other.marks)
 
-        return Box(total_length, total_width)
+    def __eq__(self, other):
+        return self.marks==other.marks
+        
 
-b1=Box(10, 6)
-b2=Box(12, 7)
 
-b3=b1+b2
+s1=Student("Abhi",60)
+s2=Student("Abhijeet",60)
+
+s3=s1+s2
+print(s3.name)
+print(s3.marks)
+print(s1==s2)
